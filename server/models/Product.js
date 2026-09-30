@@ -32,11 +32,7 @@ const productSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-<<<<<<< HEAD
       default: "/gallery/blouse-1.jpeg",
-=======
-      default: "/src/assets/gallery/blouse-1.jpeg",
->>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
     },
     images: [{ type: String }],
     details: {

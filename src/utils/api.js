@@ -14,21 +14,17 @@ export function setAuthToken(token) {
 
 async function request(endpoint, options = {}) {
   const token = getAuthToken();
-<<<<<<< HEAD
 
-  // If body is FormData, do NOT set Content-Type manually
-  // (browser will set multipart/form-data with the correct boundary)
+  // If body is FormData, do NOT set Content-Type manually.
+  // The browser will set multipart/form-data with the correct boundary.
   const isFormData = options.body instanceof FormData;
 
   const headers = isFormData
-    ? {}
-    : { "Content-Type": "application/json", ...options.headers };
-=======
-  const headers = {
-    "Content-Type": "application/json",
-    ...options.headers,
-  };
->>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
+    ? { ...options.headers }
+    : {
+        "Content-Type": "application/json",
+        ...options.headers,
+      };
 
   if (token) {
     headers["Authorization"] = `Bearer ${token}`;
@@ -41,8 +37,11 @@ async function request(endpoint, options = {}) {
 
   try {
     const res = await fetch(`${API_BASE}${endpoint}`, config);
+
     const contentType = res.headers.get("content-type");
+
     let data = {};
+
     if (contentType && contentType.includes("application/json")) {
       data = await res.json();
     } else {
@@ -51,7 +50,9 @@ async function request(endpoint, options = {}) {
     }
 
     if (!res.ok) {
-      const errorMsg = data.message || `Request failed with status ${res.status}`;
+      const errorMsg =
+        data.message || `Request failed with status ${res.status}`;
+
       throw new Error(errorMsg);
     }
 
@@ -63,23 +64,27 @@ async function request(endpoint, options = {}) {
 }
 
 export const api = {
-  get: (endpoint) => request(endpoint, { method: "GET" }),
-<<<<<<< HEAD
+  get: (endpoint) =>
+    request(endpoint, {
+      method: "GET",
+    }),
+
   post: (endpoint, body) =>
     request(endpoint, {
       method: "POST",
       body: body instanceof FormData ? body : JSON.stringify(body),
     }),
+
   put: (endpoint, body) =>
     request(endpoint, {
       method: "PUT",
       body: body instanceof FormData ? body : JSON.stringify(body),
     }),
-=======
-  post: (endpoint, body) => request(endpoint, { method: "POST", body: JSON.stringify(body) }),
-  put: (endpoint, body) => request(endpoint, { method: "PUT", body: JSON.stringify(body) }),
->>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
-  delete: (endpoint) => request(endpoint, { method: "DELETE" }),
+
+  delete: (endpoint) =>
+    request(endpoint, {
+      method: "DELETE",
+    }),
 };
 
 export default api;

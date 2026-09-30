@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Navigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   FaBoxes,
   FaClipboardList,
@@ -21,7 +21,6 @@ import api from "../utils/api.js";
 import "./AdminDashboard.css";
 
 function AdminDashboard() {
-  // Added logout here
   const { user, isAdmin, logout } = useAuth();
   const { addToast } = useToast();
 
@@ -55,20 +54,17 @@ function AdminDashboard() {
     price: "",
     originalPrice: "",
     description: "",
-    availableSizes:
-      "32 (S), 34 (M), 36 (L), Custom Measurement",
+    availableSizes: "32 (S), 34 (M), 36 (L), Custom Measurement",
     inStock: true,
     featured: false,
   });
 
-<<<<<<< HEAD
-  // Image file selected in the form (File object)
+  // Image file selected in the form
   const [imageFile, setImageFile] = useState(null);
-  // Preview URL for the selected image (created via URL.createObjectURL)
+
+  // Preview URL for selected/current image
   const [imagePreview, setImagePreview] = useState("");
 
-=======
->>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
   // ============================
   // LOAD ADMIN DATA
   // ============================
@@ -105,10 +101,7 @@ function AdminDashboard() {
     try {
       const prodRes = await api.get("/api/products");
 
-      if (
-        Array.isArray(prodRes) &&
-        prodRes.length > 0
-      ) {
+      if (Array.isArray(prodRes) && prodRes.length > 0) {
         setProductList(prodRes);
       } else {
         setProductList(defaultProducts);
@@ -119,8 +112,7 @@ function AdminDashboard() {
 
     // ORDERS
     try {
-      const ordersRes =
-        await api.get("/api/admin/orders");
+      const ordersRes = await api.get("/api/admin/orders");
 
       if (Array.isArray(ordersRes)) {
         setOrdersList(ordersRes);
@@ -139,8 +131,9 @@ function AdminDashboard() {
 
     // APPOINTMENTS
     try {
-      const apptRes =
-        await api.get("/api/admin/appointments");
+      const apptRes = await api.get(
+        "/api/admin/appointments"
+      );
 
       if (Array.isArray(apptRes)) {
         setBookingsList(apptRes);
@@ -237,37 +230,50 @@ function AdminDashboard() {
             .filter(Boolean)
         : newProductForm.availableSizes;
 
-<<<<<<< HEAD
-    // Build FormData so the image file is sent as multipart/form-data
+    // Build FormData for product + image upload
     const formData = new FormData();
+
     formData.append("name", newProductForm.name);
     formData.append("category", newProductForm.category);
-    formData.append("price", String(Number(newProductForm.price)));
-    if (newProductForm.originalPrice) {
-      formData.append("originalPrice", String(Number(newProductForm.originalPrice)));
-    }
-    formData.append("description", newProductForm.description || "Handcrafted custom boutique design.");
-    formData.append("availableSizes", sizesArr.join(","));
-    formData.append("inStock", String(newProductForm.inStock));
-    formData.append("featured", String(newProductForm.featured));
+    formData.append(
+      "price",
+      String(Number(newProductForm.price))
+    );
 
-    // Attach the image file if the admin selected one
+    if (newProductForm.originalPrice) {
+      formData.append(
+        "originalPrice",
+        String(Number(newProductForm.originalPrice))
+      );
+    }
+
+    formData.append(
+      "description",
+      newProductForm.description ||
+        "Handcrafted custom boutique design."
+    );
+
+    formData.append(
+      "availableSizes",
+      sizesArr.join(",")
+    );
+
+    formData.append(
+      "inStock",
+      String(newProductForm.inStock)
+    );
+
+    formData.append(
+      "featured",
+      String(newProductForm.featured)
+    );
+
+    // Attach image if selected
     if (imageFile) {
       formData.append("image", imageFile);
     }
-=======
-    const payload = {
-      ...newProductForm,
-      price: Number(newProductForm.price),
-      originalPrice:
-        newProductForm.originalPrice
-          ? Number(newProductForm.originalPrice)
-          : undefined,
-      availableSizes: sizesArr,
-    };
->>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
 
-    // EDIT
+    // EDIT PRODUCT
     if (editingProduct) {
       try {
         const updated = await api.put(
@@ -275,11 +281,7 @@ function AdminDashboard() {
             editingProduct.id ||
             editingProduct._id
           }`,
-<<<<<<< HEAD
           formData
-=======
-          payload
->>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
         );
 
         if (updated) {
@@ -305,16 +307,12 @@ function AdminDashboard() {
       }
     }
 
-    // ADD
+    // ADD PRODUCT
     else {
       try {
         const created = await api.post(
           "/api/products",
-<<<<<<< HEAD
           formData
-=======
-          payload
->>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
         );
 
         if (created) {
@@ -338,11 +336,8 @@ function AdminDashboard() {
 
     setShowProductModal(false);
     setEditingProduct(null);
-<<<<<<< HEAD
     setImageFile(null);
     setImagePreview("");
-=======
->>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
 
     loadAdminData();
   };
@@ -358,9 +353,7 @@ function AdminDashboard() {
       )
     ) {
       try {
-        await api.delete(
-          `/api/products/${id}`
-        );
+        await api.delete(`/api/products/${id}`);
 
         setProductList((prev) =>
           prev.filter(
@@ -543,7 +536,7 @@ function AdminDashboard() {
               <FaUserCircle />
 
               <span>
-                Welcome,{" "}
+                Welcome{" "}
                 <strong>
                   {user.name}
                 </strong>
@@ -883,30 +876,22 @@ function AdminDashboard() {
                   className="btn btn-primary"
                   onClick={() => {
                     setEditingProduct(null);
-<<<<<<< HEAD
                     setImageFile(null);
                     setImagePreview("");
-=======
->>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
 
                     setNewProductForm({
                       name: "",
-                      category:
-                        "Blouses",
+                      category: "Blouses",
                       price: "",
-                      originalPrice:
-                        "",
-                      description:
-                        "",
+                      originalPrice: "",
+                      description: "",
                       availableSizes:
                         "32 (S), 34 (M), 36 (L), Custom Measurement",
                       inStock: true,
                       featured: false,
                     });
 
-                    setShowProductModal(
-                      true
-                    );
+                    setShowProductModal(true);
                   }}
                 >
                   <FaPlus />
@@ -944,12 +929,8 @@ function AdminDashboard() {
 
                           <td>
                             <img
-                              src={
-                                prod.image
-                              }
-                              alt={
-                                prod.name
-                              }
+                              src={prod.image}
+                              alt={prod.name}
                               className="table-thumb"
                             />
                           </td>
@@ -1000,45 +981,39 @@ function AdminDashboard() {
                                 type="button"
                                 className="table-btn btn-edit"
                                 onClick={() => {
-                                  setEditingProduct(
-                                    prod
-                                  );
-<<<<<<< HEAD
-                                  // Reset file input; show existing image as preview
-                                  setImageFile(null);
-                                  setImagePreview(prod.image || "");
-=======
->>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
+                                  setEditingProduct(prod);
 
-                                  setNewProductForm(
-                                    {
-                                      name:
-                                        prod.name,
-                                      category:
-                                        prod.category,
-                                      price:
-                                        prod.price,
-                                      originalPrice:
-                                        prod.originalPrice ||
-                                        "",
-                                      description:
-                                        prod.description,
-                                      availableSizes:
-                                        Array.isArray(
-                                          prod.availableSizes
-                                        )
-                                          ? prod.availableSizes.join(
-                                              ", "
-                                            )
-                                          : prod.availableSizes ||
-                                            "",
-                                      inStock:
-                                        prod.inStock,
-                                      featured:
-                                        prod.featured ||
-                                        false,
-                                    }
+                                  // Reset file input and show current image
+                                  setImageFile(null);
+                                  setImagePreview(
+                                    prod.image || ""
                                   );
+
+                                  setNewProductForm({
+                                    name: prod.name,
+                                    category:
+                                      prod.category,
+                                    price: prod.price,
+                                    originalPrice:
+                                      prod.originalPrice ||
+                                      "",
+                                    description:
+                                      prod.description,
+                                    availableSizes:
+                                      Array.isArray(
+                                        prod.availableSizes
+                                      )
+                                        ? prod.availableSizes.join(
+                                            ", "
+                                          )
+                                        : prod.availableSizes ||
+                                          "",
+                                    inStock:
+                                      prod.inStock,
+                                    featured:
+                                      prod.featured ||
+                                      false,
+                                  });
 
                                   setShowProductModal(
                                     true
@@ -1094,16 +1069,12 @@ function AdminDashboard() {
                   <thead>
                     <tr>
                       <th>Order ID</th>
-                      <th>
-                        Customer Details
-                      </th>
+                      <th>Customer Details</th>
                       <th>Items Count</th>
                       <th>Total Amount</th>
                       <th>Payment</th>
                       <th>Status</th>
-                      <th>
-                        Update Status
-                      </th>
+                      <th>Update Status</th>
                     </tr>
                   </thead>
 
@@ -1117,9 +1088,7 @@ function AdminDashboard() {
                           ord._id;
 
                         return (
-                          <tr
-                            key={idVal}
-                          >
+                          <tr key={idVal}>
 
                             <td>
                               <strong>
@@ -1152,8 +1121,7 @@ function AdminDashboard() {
                             </td>
 
                             <td>
-                              {ord.items
-                                ?.length ||
+                              {ord.items?.length ||
                                 1}{" "}
                               item(s)
                             </td>
@@ -1185,13 +1153,10 @@ function AdminDashboard() {
                                 value={
                                   ord.status
                                 }
-                                onChange={(
-                                  e
-                                ) =>
+                                onChange={(e) =>
                                   handleUpdateOrderStatus(
                                     idVal,
-                                    e.target
-                                      .value
+                                    e.target.value
                                   )
                                 }
                                 className="form-select status-select"
@@ -1266,9 +1231,7 @@ function AdminDashboard() {
                       <th>Ref ID</th>
                       <th>Customer</th>
                       <th>Service</th>
-                      <th>
-                        Preferred Slot
-                      </th>
+                      <th>Preferred Slot</th>
                       <th>
                         Measurements /
                         Notes
@@ -1288,9 +1251,7 @@ function AdminDashboard() {
                           bk._id;
 
                         return (
-                          <tr
-                            key={bkId}
-                          >
+                          <tr key={bkId}>
 
                             <td>
                               <strong>
@@ -1301,16 +1262,12 @@ function AdminDashboard() {
                             <td>
                               <div>
                                 <strong>
-                                  {
-                                    bk.name
-                                  }
+                                  {bk.name}
                                 </strong>
                               </div>
 
                               <div className="subtext">
-                                {
-                                  bk.phone
-                                }
+                                {bk.phone}
                               </div>
                             </td>
 
@@ -1320,15 +1277,11 @@ function AdminDashboard() {
 
                             <td>
                               <div>
-                                {
-                                  bk.preferredDate
-                                }
+                                {bk.preferredDate}
                               </div>
 
                               <div className="subtext">
-                                {
-                                  bk.preferredTime
-                                }
+                                {bk.preferredTime}
                               </div>
                             </td>
 
@@ -1343,9 +1296,7 @@ function AdminDashboard() {
                               {bk.fabricType && (
                                 <div className="subtext">
                                   Fabric:{" "}
-                                  {
-                                    bk.fabricType
-                                  }
+                                  {bk.fabricType}
                                 </div>
                               )}
                             </td>
@@ -1362,13 +1313,10 @@ function AdminDashboard() {
                                 value={
                                   bk.status
                                 }
-                                onChange={(
-                                  e
-                                ) =>
+                                onChange={(e) =>
                                   handleUpdateBookingStatus(
                                     bkId,
-                                    e.target
-                                      .value
+                                    e.target.value
                                   )
                                 }
                                 className="form-select status-select"
@@ -1428,9 +1376,7 @@ function AdminDashboard() {
                 : "Add New Design"}
             </h2>
 
-            <form
-              onSubmit={handleSaveProduct}
-            >
+            <form onSubmit={handleSaveProduct}>
 
               <div className="form-group">
 
@@ -1441,9 +1387,7 @@ function AdminDashboard() {
                 <input
                   type="text"
                   className="form-input"
-                  value={
-                    newProductForm.name
-                  }
+                  value={newProductForm.name}
                   onChange={(e) =>
                     setNewProductForm({
                       ...newProductForm,
@@ -1465,14 +1409,11 @@ function AdminDashboard() {
 
                   <select
                     className="form-select"
-                    value={
-                      newProductForm.category
-                    }
+                    value={newProductForm.category}
                     onChange={(e) =>
                       setNewProductForm({
                         ...newProductForm,
-                        category:
-                          e.target.value,
+                        category: e.target.value,
                       })
                     }
                   >
@@ -1506,14 +1447,11 @@ function AdminDashboard() {
                   <input
                     type="number"
                     className="form-input"
-                    value={
-                      newProductForm.price
-                    }
+                    value={newProductForm.price}
                     onChange={(e) =>
                       setNewProductForm({
                         ...newProductForm,
-                        price:
-                          e.target.value,
+                        price: e.target.value,
                       })
                     }
                     required
@@ -1545,9 +1483,10 @@ function AdminDashboard() {
 
               </div>
 
-<<<<<<< HEAD
               {/* IMAGE UPLOAD */}
+
               <div className="form-group">
+
                 <label className="form-label">
                   Product Image
                   {editingProduct
@@ -1561,17 +1500,24 @@ function AdminDashboard() {
                   className="form-input"
                   style={{ padding: "6px" }}
                   onChange={(e) => {
-                    const file = e.target.files[0];
+                    const file =
+                      e.target.files[0];
+
                     if (file) {
                       setImageFile(file);
-                      // Create a local preview URL
-                      const previewUrl = URL.createObjectURL(file);
-                      setImagePreview(previewUrl);
+
+                      const previewUrl =
+                        URL.createObjectURL(file);
+
+                      setImagePreview(
+                        previewUrl
+                      );
                     }
                   }}
                 />
 
-                {/* Image Preview */}
+                {/* IMAGE PREVIEW */}
+
                 {imagePreview && (
                   <div
                     style={{
@@ -1582,6 +1528,7 @@ function AdminDashboard() {
                       display: "inline-block",
                     }}
                   >
+
                     <img
                       src={imagePreview}
                       alt="Preview"
@@ -1593,6 +1540,7 @@ function AdminDashboard() {
                         display: "block",
                       }}
                     />
+
                     <p
                       style={{
                         fontSize: "0.75rem",
@@ -1605,20 +1553,22 @@ function AdminDashboard() {
                         ? `Selected: ${imageFile.name}`
                         : "Current image"}
                     </p>
+
                   </div>
                 )}
+
               </div>
 
-=======
->>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
               <div className="modal-actions">
 
                 <button
                   type="button"
                   className="btn btn-outline"
-                  onClick={() =>
-                    setShowProductModal(false)
-                  }
+                  onClick={() => {
+                    setShowProductModal(false);
+                    setImageFile(null);
+                    setImagePreview("");
+                  }}
                 >
                   Cancel
                 </button>
