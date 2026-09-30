@@ -31,7 +31,11 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin) || process.env.NODE_ENV !== "production") {
+      if (
+        !origin ||
+        allowedOrigins.includes(origin) ||
+        process.env.NODE_ENV !== "production"
+      ) {
         callback(null, true);
       } else {
         callback(null, true);
@@ -41,17 +45,17 @@ app.use(
   })
 );
 
- HEAD
+// Request body parsing
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-
 // API Health Check
 app.get("/api/health", (req, res) => {
-  res.json({ status: "OK", store: "Priya's Boutique API Server", timestamp: new Date() });
+  res.json({
+    status: "OK",
+    store: "Priya's Boutique API Server",
+    timestamp: new Date(),
+  });
 });
 
 // API Routes
@@ -74,9 +78,12 @@ app.get("*path", (req, res, next) => {
   if (req.path.startsWith("/api")) {
     return res.status(404).json({ message: "API endpoint not found" });
   }
+
   res.sendFile(path.join(distPath, "index.html"), (err) => {
     if (err) {
-      res.status(404).send("Front-end build not found. Running in API server mode.");
+      res
+        .status(404)
+        .send("Front-end build not found. Running in API server mode.");
     }
   });
 });
@@ -84,7 +91,9 @@ app.get("*path", (req, res, next) => {
 // Global Error Handler
 app.use((err, req, res, next) => {
   console.error("Server Error:", err);
+
   const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+
   res.status(statusCode).json({
     message: err.message || "Internal Server Error",
     stack: process.env.NODE_ENV === "production" ? null : err.stack,
@@ -94,7 +103,9 @@ app.use((err, req, res, next) => {
 // Connect Database & Start Server
 connectDB().then(() => {
   app.listen(PORT, () => {
-    console.log(`Priya's Boutique Server running on http://localhost:${PORT}`);
+    console.log(
+      `Priya's Boutique Server running on http://localhost:${PORT}`
+    );
   });
 });
 
