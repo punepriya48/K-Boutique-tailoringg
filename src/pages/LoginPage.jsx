@@ -71,13 +71,7 @@ function LoginPage() {
             </button>
           </form>
 
-          {/* Quick Demo Fill Buttons */}
-          <div className="demo-credentials-box">
-            <p className="demo-title">Quick Demo Login:</p>
-            <button type="button" className="demo-btn" onClick={handleDemoAdmin}>
-              <FaUserShield /> Fill Admin Credentials (admin@priyasboutique.com)
-            </button>
-          </div>
+          
 
           <div className="auth-footer">
             <span>Don't have an account yet?</span>
