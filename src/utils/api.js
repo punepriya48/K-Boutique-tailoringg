@@ -14,6 +14,7 @@ export function setAuthToken(token) {
 
 async function request(endpoint, options = {}) {
   const token = getAuthToken();
+<<<<<<< HEAD
 
   // If body is FormData, do NOT set Content-Type manually
   // (browser will set multipart/form-data with the correct boundary)
@@ -22,6 +23,12 @@ async function request(endpoint, options = {}) {
   const headers = isFormData
     ? {}
     : { "Content-Type": "application/json", ...options.headers };
+=======
+  const headers = {
+    "Content-Type": "application/json",
+    ...options.headers,
+  };
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
 
   if (token) {
     headers["Authorization"] = `Bearer ${token}`;
@@ -57,6 +64,7 @@ async function request(endpoint, options = {}) {
 
 export const api = {
   get: (endpoint) => request(endpoint, { method: "GET" }),
+<<<<<<< HEAD
   post: (endpoint, body) =>
     request(endpoint, {
       method: "POST",
@@ -67,6 +75,10 @@ export const api = {
       method: "PUT",
       body: body instanceof FormData ? body : JSON.stringify(body),
     }),
+=======
+  post: (endpoint, body) => request(endpoint, { method: "POST", body: JSON.stringify(body) }),
+  put: (endpoint, body) => request(endpoint, { method: "PUT", body: JSON.stringify(body) }),
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
   delete: (endpoint) => request(endpoint, { method: "DELETE" }),
 };
 

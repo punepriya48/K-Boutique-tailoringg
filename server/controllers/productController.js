@@ -1,6 +1,7 @@
 import Product from "../models/Product.js";
 import { initialProducts } from "../utils/seedProducts.js";
 
+<<<<<<< HEAD
 /**
  * Convert a multer file buffer to a Base64 data URI.
  * e.g. "data:image/jpeg;base64,/9j/4AAQ..."
@@ -11,6 +12,8 @@ function fileToBase64(file) {
   return `data:${file.mimetype};base64,${base64}`;
 }
 
+=======
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
 // @desc Get all products (seeds defaults if DB is empty)
 // @route GET /api/products
 export async function getProducts(req, res) {
@@ -57,16 +60,23 @@ export async function getProductById(req, res) {
 
 // @desc Create a new product (Admin)
 // @route POST /api/products
+<<<<<<< HEAD
 // Handles both multipart/form-data (with image file) and application/json
 export async function createProduct(req, res) {
   try {
     const { name, category, price, originalPrice, description, image, images, availableSizes, inStock, featured } =
       req.body;
+=======
+export async function createProduct(req, res) {
+  try {
+    const { name, category, price, originalPrice, description, image, images, availableSizes, inStock, featured } = req.body;
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
 
     if (!name || !category || !price) {
       return res.status(400).json({ message: "Name, category, and price are required" });
     }
 
+<<<<<<< HEAD
     // If a file was uploaded via multer, convert it to Base64 data URI
     // Otherwise fall back to the image string sent in the body
     let imageValue = "/gallery/blouse-1.jpeg";
@@ -76,6 +86,8 @@ export async function createProduct(req, res) {
       imageValue = image.trim();
     }
 
+=======
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
     const newProductId = `prod-${Date.now()}`;
     const product = await Product.create({
       productId: newProductId,
@@ -84,6 +96,7 @@ export async function createProduct(req, res) {
       price: Number(price),
       originalPrice: originalPrice ? Number(originalPrice) : undefined,
       description: description || "Handcrafted custom boutique design.",
+<<<<<<< HEAD
       image: imageValue,
       images: images || [imageValue],
       availableSizes: Array.isArray(availableSizes)
@@ -91,6 +104,11 @@ export async function createProduct(req, res) {
         : typeof availableSizes === "string" && availableSizes.trim()
         ? availableSizes.split(",").map((s) => s.trim()).filter(Boolean)
         : ["32 (S)", "34 (M)", "36 (L)", "Custom Measurement"],
+=======
+      image: image || "/src/assets/gallery/blouse-1.jpeg",
+      images: images || [],
+      availableSizes: Array.isArray(availableSizes) ? availableSizes : ["32 (S)", "34 (M)", "36 (L)", "Custom Measurement"],
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
       inStock: inStock !== undefined ? Boolean(inStock) : true,
       featured: featured !== undefined ? Boolean(featured) : false,
     });
@@ -105,7 +123,10 @@ export async function createProduct(req, res) {
 
 // @desc Update product (Admin)
 // @route PUT /api/products/:id
+<<<<<<< HEAD
 // Handles both multipart/form-data (with image file) and application/json
+=======
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
 export async function updateProduct(req, res) {
   try {
     const { id } = req.params;
@@ -117,6 +138,7 @@ export async function updateProduct(req, res) {
       return res.status(404).json({ message: "Product not found" });
     }
 
+<<<<<<< HEAD
     // Build the update object from body fields
     const updateData = { ...req.body };
 
@@ -142,12 +164,18 @@ export async function updateProduct(req, res) {
     if (updateData.originalPrice) updateData.originalPrice = Number(updateData.originalPrice);
 
     Object.assign(product, updateData);
+=======
+    Object.assign(product, req.body);
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
     await product.save();
 
     const doc = product.toObject();
     res.json({ ...doc, id: doc.productId || doc._id.toString() });
   } catch (error) {
+<<<<<<< HEAD
     console.error("Update Product Error:", error);
+=======
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
     res.status(500).json({ message: "Failed to update product" });
   }
 }

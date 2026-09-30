@@ -1,5 +1,21 @@
+<<<<<<< HEAD
 // Images are served from /public/gallery/ so they work correctly
 // after Vite build on Vercel — NO Vite import hashing issues.
+=======
+import blouse1 from "../assets/gallery/blouse-1.jpeg";
+import blouse2 from "../assets/gallery/blouse-2.jpeg";
+import blouse3 from "../assets/gallery/blouse-3.jpeg";
+import lehenga1 from "../assets/gallery/lehenga-1.jpeg";
+import lehenga2 from "../assets/gallery/lehenga-2.jpeg";
+import lehenga3 from "../assets/gallery/lehenga-3.jpeg";
+import dress1 from "../assets/gallery/dress-1.jpg";
+import dress2 from "../assets/gallery/dress-2.jpeg";
+import dress3 from "../assets/gallery/dress-3.jpeg";
+import other1 from "../assets/gallery/other-1.jpeg";
+import other2 from "../assets/gallery/other-2.jpeg";
+import other3 from "../assets/gallery/other-3.jpeg";
+
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
 export const PRODUCT_CATEGORIES = [
   { id: "all", label: "All Items" },
   { id: "Blouses", label: "Blouses" },
@@ -17,8 +33,13 @@ export const products = [
     originalPrice: 900,
     rating: 4.9,
     reviewCount: 28,
+<<<<<<< HEAD
     image: "/gallery/blouse-1.jpeg",
     images: ["/gallery/blouse-1.jpeg", "/gallery/blouse-2.jpeg", "/gallery/blouse-3.jpeg"],
+=======
+    image: blouse1,
+    images: [blouse1, blouse2, blouse3],
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
     description: "Handcrafted pure silk blouse featuring intricate Zardosi embroidery around the neckline and sleeves. Stitched with comfortable padded cups and soft inner lining.",
     details: {
       fabric: "Raw Silk / Brocade",
@@ -39,8 +60,13 @@ export const products = [
     originalPrice: 1200,
     rating: 5.0,
     reviewCount: 35,
+<<<<<<< HEAD
     image: "/gallery/blouse-2.jpeg",
     images: ["/gallery/blouse-2.jpeg", "/gallery/blouse-1.jpeg", "/gallery/blouse-3.jpeg"],
+=======
+    image: blouse2,
+    images: [blouse2, blouse1, blouse3],
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
     description: "Luxury micro-velvet bridal blouse decorated with gold thread embroidery and stone accents. Perfect for grand wedding functions and festive sarees.",
     details: {
       fabric: "Micro Velvet",
@@ -61,8 +87,13 @@ export const products = [
     originalPrice: 750,
     rating: 4.7,
     reviewCount: 19,
+<<<<<<< HEAD
     image: "/gallery/blouse-3.jpeg",
     images: ["/gallery/blouse-3.jpeg", "/gallery/blouse-1.jpeg"],
+=======
+    image: blouse3,
+    images: [blouse3, blouse1],
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
     description: "Elegant boatneck blouse crafted in breathable cotton silk fabric. Ideal for everyday office wear as well as semi-formal family gatherings.",
     details: {
       fabric: "Cotton Silk Blend",
@@ -83,8 +114,13 @@ export const products = [
     originalPrice: 4500,
     rating: 4.9,
     reviewCount: 42,
+<<<<<<< HEAD
     image: "/gallery/lehenga-1.jpeg",
     images: ["/gallery/lehenga-1.jpeg", "/gallery/lehenga-2.jpeg", "/gallery/lehenga-3.jpeg"],
+=======
+    image: lehenga1,
+    images: [lehenga1, lehenga2, lehenga3],
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
     description: "Breathtaking pastel pink organza lehenga choli with delicate floral thread embroidery, voluminous flared ghera, and matching net dupatta.",
     details: {
       fabric: "Organza Lehenga & Silk Choli",
@@ -105,8 +141,13 @@ export const products = [
     originalPrice: 8000,
     rating: 5.0,
     reviewCount: 56,
+<<<<<<< HEAD
     image: "/gallery/lehenga-2.jpeg",
     images: ["/gallery/lehenga-2.jpeg", "/gallery/lehenga-1.jpeg", "/gallery/lehenga-3.jpeg"],
+=======
+    image: lehenga2,
+    images: [lehenga2, lehenga1, lehenga3],
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
     description: "Royal crimson red velvet lehenga set with traditional bridal dori and gota patti craftsmanship. Designed for brides who appreciate timeless elegance.",
     details: {
       fabric: "Rich Velvet",
@@ -127,8 +168,13 @@ export const products = [
     originalPrice: 7999,
     rating: 4.8,
     reviewCount: 22,
+<<<<<<< HEAD
     image: "/gallery/lehenga-3.jpeg",
     images: ["/gallery/lehenga-3.jpeg", "/gallery/lehenga-1.jpeg"],
+=======
+    image: lehenga3,
+    images: [lehenga3, lehenga1],
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
     description: "Lightweight georgette lehenga featuring mirror work highlights and a stylish tie-back blouse. Comfortable for sangeet and garba dance events.",
     details: {
       fabric: "Faux Georgette",
@@ -149,8 +195,13 @@ export const products = [
     originalPrice: 3999,
     rating: 4.8,
     reviewCount: 31,
+<<<<<<< HEAD
     image: "/gallery/dress-1.jpg",
     images: ["/gallery/dress-1.jpg", "/gallery/dress-2.jpeg", "/gallery/dress-3.jpeg"],
+=======
+    image: dress1,
+    images: [dress1, dress2, dress3],
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
     description: "Floor-length silk Anarkali gown adorned with delicate zari embroidery along the yoke and sleeve cuffs. Includes pants and organza dupatta.",
     details: {
       fabric: "Chanderi Silk",
@@ -171,8 +222,13 @@ export const products = [
     originalPrice: 2000,
     rating: 4.9,
     reviewCount: 17,
+<<<<<<< HEAD
     image: "/gallery/dress-2.jpeg",
     images: ["/gallery/dress-2.jpeg", "/gallery/dress-1.jpg"],
+=======
+    image: dress2,
+    images: [dress2, dress1],
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
     description: "Modern peplum style short kurti paired with multi-tiered flared sharara pants. Stylish outfit for festive family dinners.",
     details: {
       fabric: "Crepe & Georgette",
@@ -192,8 +248,13 @@ export const products = [
     originalPrice: 3499,
     rating: 4.9,
     reviewCount: 24,
+<<<<<<< HEAD
     image: "/gallery/dress-3.jpeg",
     images: ["/gallery/dress-3.jpeg", "/gallery/dress-1.jpg"],
+=======
+    image: dress3,
+    images: [dress3, dress1],
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
     description: "Fluid layered chiffon gown with a structured embroidered belt and cap sleeves. Subtle luxury designed for receptions.",
     details: {
       fabric: "Pure Chiffon & Satin Base",
@@ -213,8 +274,13 @@ export const products = [
     originalPrice: 2799,
     rating: 4.7,
     reviewCount: 15,
+<<<<<<< HEAD
     image: "/gallery/other-1.jpeg",
     images: ["/gallery/other-1.jpeg", "/gallery/other-2.jpeg"],
+=======
+    image: other1,
+    images: [other1, other2],
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
     description: "Straight-cut Chanderi kurti with intricate neck embroidery, paired with cotton pants and printed dupatta.",
     details: {
       fabric: "Chanderi Cotton",
@@ -234,8 +300,13 @@ export const products = [
     originalPrice: 3499,
     rating: 4.8,
     reviewCount: 18,
+<<<<<<< HEAD
     image: "/gallery/other-2.jpeg",
     images: ["/gallery/other-2.jpeg", "/gallery/other-3.jpeg"],
+=======
+    image: other2,
+    images: [other2, other3],
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
     description: "A-line festive kurta set with delicate pearl lace detailing along the neck and sleeve borders.",
     details: {
       fabric: "Modal Silk",
@@ -255,8 +326,13 @@ export const products = [
     originalPrice: 2999,
     rating: 4.9,
     reviewCount: 21,
+<<<<<<< HEAD
     image: "/gallery/other-3.jpeg",
     images: ["/gallery/other-3.jpeg", "/gallery/other-1.jpeg"],
+=======
+    image: other3,
+    images: [other3, other1],
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
     description: "Traditional overlap Angrakha kurti tied with handmade pom-pom tassels. Customized to your bust and armhole measurements.",
     details: {
       fabric: "Pure Cotton Slub",

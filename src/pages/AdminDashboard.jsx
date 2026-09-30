@@ -61,11 +61,14 @@ function AdminDashboard() {
     featured: false,
   });
 
+<<<<<<< HEAD
   // Image file selected in the form (File object)
   const [imageFile, setImageFile] = useState(null);
   // Preview URL for the selected image (created via URL.createObjectURL)
   const [imagePreview, setImagePreview] = useState("");
 
+=======
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
   // ============================
   // LOAD ADMIN DATA
   // ============================
@@ -234,6 +237,7 @@ function AdminDashboard() {
             .filter(Boolean)
         : newProductForm.availableSizes;
 
+<<<<<<< HEAD
     // Build FormData so the image file is sent as multipart/form-data
     const formData = new FormData();
     formData.append("name", newProductForm.name);
@@ -251,6 +255,17 @@ function AdminDashboard() {
     if (imageFile) {
       formData.append("image", imageFile);
     }
+=======
+    const payload = {
+      ...newProductForm,
+      price: Number(newProductForm.price),
+      originalPrice:
+        newProductForm.originalPrice
+          ? Number(newProductForm.originalPrice)
+          : undefined,
+      availableSizes: sizesArr,
+    };
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
 
     // EDIT
     if (editingProduct) {
@@ -260,7 +275,11 @@ function AdminDashboard() {
             editingProduct.id ||
             editingProduct._id
           }`,
+<<<<<<< HEAD
           formData
+=======
+          payload
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
         );
 
         if (updated) {
@@ -291,7 +310,11 @@ function AdminDashboard() {
       try {
         const created = await api.post(
           "/api/products",
+<<<<<<< HEAD
           formData
+=======
+          payload
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
         );
 
         if (created) {
@@ -315,8 +338,11 @@ function AdminDashboard() {
 
     setShowProductModal(false);
     setEditingProduct(null);
+<<<<<<< HEAD
     setImageFile(null);
     setImagePreview("");
+=======
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
 
     loadAdminData();
   };
@@ -857,8 +883,11 @@ function AdminDashboard() {
                   className="btn btn-primary"
                   onClick={() => {
                     setEditingProduct(null);
+<<<<<<< HEAD
                     setImageFile(null);
                     setImagePreview("");
+=======
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
 
                     setNewProductForm({
                       name: "",
@@ -974,9 +1003,12 @@ function AdminDashboard() {
                                   setEditingProduct(
                                     prod
                                   );
+<<<<<<< HEAD
                                   // Reset file input; show existing image as preview
                                   setImageFile(null);
                                   setImagePreview(prod.image || "");
+=======
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
 
                                   setNewProductForm(
                                     {
@@ -1513,6 +1545,7 @@ function AdminDashboard() {
 
               </div>
 
+<<<<<<< HEAD
               {/* IMAGE UPLOAD */}
               <div className="form-group">
                 <label className="form-label">
@@ -1576,6 +1609,8 @@ function AdminDashboard() {
                 )}
               </div>
 
+=======
+>>>>>>> e7e6b1fdda60d6a018b2b45a096cf4611c31f1a8
               <div className="modal-actions">
 
                 <button
