@@ -490,7 +490,7 @@ function AdminDashboard() {
             </span>
 
             <h1 className="page-title">
-              Priya's Boutique Admin Dashboard
+              Kalpana's Boutique Admin Dashboard
             </h1>
           </div>
 
